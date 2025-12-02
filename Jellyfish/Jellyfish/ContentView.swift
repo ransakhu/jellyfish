@@ -1,9 +1,8 @@
-
 import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        FocusTimerScreen()   // شاشتنا الرئيسية
+        HomeView()  // Changed from FocusTimerScreen() to HomeView()
     }
 }
 

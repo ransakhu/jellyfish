@@ -141,17 +141,27 @@ struct JellyfishFocusView: View {
                         wiggle.toggle()
                     }
                 }
-            
-            // 🟦 أثناء التشغيل فقط (RUNNING)
+            // أثناء التشغيل
             if viewModel.mode == .running {
                 Text("keep the fish alive!")
                     .foregroundColor(.white)
                     .font(.system(size: 20, weight: .semibold))
                 
-                Text("\(viewModel.remainingSeconds) s left")
+                // هنا نعرض 03:00 ، 02:59 ، ...
+                Text(viewModel.formattedTime(viewModel.remainingSeconds))
                     .foregroundColor(.white.opacity(0.9))
                     .font(.system(size: 16))
             }
+            // 🟦 أثناء التشغيل فقط (RUNNING)
+//            if viewModel.mode == .running {
+//                Text("keep the fish alive!")
+//                    .foregroundColor(.white)
+//                    .font(.system(size: 20, weight: .semibold))
+//                
+//                Text("\(viewModel.remainingSeconds) s left")
+//                    .foregroundColor(.white.opacity(0.9))
+//                    .font(.system(size: 16))
+//            }
             
             // 🟩 بعد ما يخلص (FINISHED)
             if viewModel.mode == .finished {
