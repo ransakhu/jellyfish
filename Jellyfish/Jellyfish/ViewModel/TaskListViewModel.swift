@@ -1,3 +1,54 @@
+//import SwiftUI
+//import Combine
+//
+////MARK: chat ver
+////
+//class TaskListViewModel: ObservableObject {
+//    @Published var taskLists: [TaskList] = []
+//    
+//    // MARK: - Archive / Unarchive / Delete
+//    
+//    func archiveTaskList(_ list: TaskList) {
+//        if let index = taskLists.firstIndex(where: { $0.id == list.id }) {
+//            taskLists[index].isArchived = true
+//        }
+//    }
+//    
+//    @discardableResult
+//    func addTaskList(name: String) -> TaskList {
+//        let newList = TaskList(name: name)
+//        taskLists.append(newList)
+//        return newList
+//    }
+//    
+//    func unarchiveTaskList(_ list: TaskList) {
+//        if let index = taskLists.firstIndex(where: { $0.id == list.id }) {
+//            taskLists[index].isArchived = false
+//        }
+//    }
+//    
+//    func deleteTaskListById(_ id: UUID) {
+//        taskLists.removeAll { $0.id == id }
+//    }
+//    
+//    // Update an existing TaskList by id
+//    func updateTaskList(_ updatedList: TaskList) {
+//        if let index = taskLists.firstIndex(where: { $0.id == updatedList.id }) {
+//            taskLists[index] = updatedList
+//        }
+//    }
+//    
+//    // Convenience computed arrays:
+//    var activeLists: [TaskList] {
+//        taskLists.filter { !$0.isArchived }
+//    }
+//    
+//    var archivedLists: [TaskList] {
+//        taskLists.filter { $0.isArchived }
+//    }
+//}
+
+// MARK: V32
 import SwiftUI
 import Combine
 
