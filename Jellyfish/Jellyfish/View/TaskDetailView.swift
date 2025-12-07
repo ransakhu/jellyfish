@@ -744,7 +744,17 @@ struct TaskDetailView: View {
                 } else {
                     ScrollView {
                         LazyVStack(spacing: 12) {
-                            ForEach(viewModel.taskList.tasks) { task in
+                            // Sort: incomplete tasks first, completed tasks last
+                            let sortedTasks = viewModel.taskList.tasks.sorted { task1, task2 in
+                                if task1.isCompleted && !task2.isCompleted {
+                                    return false // task1 is complete, goes after task2
+                                } else if !task1.isCompleted && task2.isCompleted {
+                                    return true // task1 is incomplete, goes before task2
+                                }
+                                return false // keep original order if both same status
+                            }
+                            
+                            ForEach(sortedTasks) { task in
                                 TaskRowView(
                                     task: task,
                                     onComplete: {
@@ -757,6 +767,9 @@ struct TaskDetailView: View {
                                     },
                                     onNotification: {
                                         viewModel.enableNotification(for: task, date: Date())
+                                    },
+                                    onDelete: {
+                                        viewModel.deleteTask(task)
                                     }
                                 )
                             }

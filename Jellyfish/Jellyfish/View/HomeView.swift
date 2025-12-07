@@ -1203,12 +1203,23 @@ struct HomeView: View {
                         .transition(.move(edge: .top).combined(with: .opacity))
                     }
                     // Lists with ScrollView
+                    // Lists with ScrollView
                     ScrollView {
                         LazyVStack(spacing: 16) {
                             let lists = showingArchive ? viewModel.archivedLists : viewModel.activeLists
                             let filteredLists = searchText.isEmpty ? lists : lists.filter { $0.name.localizedCaseInsensitiveContains(searchText) }
                             
-                            if filteredLists.isEmpty {
+                            // Sort: incomplete lists first, completed lists last
+                            let sortedLists = filteredLists.sorted { list1, list2 in
+                                if list1.progress >= 1.0 && list2.progress < 1.0 {
+                                    return false // list1 is complete, goes after list2
+                                } else if list1.progress < 1.0 && list2.progress >= 1.0 {
+                                    return true // list1 is incomplete, goes before list2
+                                }
+                                return false // keep original order if both same status
+                            }
+                            
+                            if sortedLists.isEmpty {
                                 VStack(spacing: 12) {
                                     Image(systemName: showingArchive ? "archivebox" : "list.bullet")
                                         .font(.system(size: 60))
@@ -1223,7 +1234,7 @@ struct HomeView: View {
                                 }
                                 .padding(.top, 100)
                             } else {
-                                ForEach(filteredLists) { list in
+                                ForEach(sortedLists) { list in
                                     TaskListCardView(
                                         taskList: list,
                                         viewModel: viewModel,
