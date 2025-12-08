@@ -1,449 +1,191 @@
-//import SwiftUI
-//
-//struct AddListView: View {
-//    @ObservedObject var viewModel: TaskListViewModel
-//    @State private var listName = ""
-//    @Environment(\.dismiss) private var dismiss
-//    
-//    var body: some View {
-//        ZStack {
-//            Color("backgroundColor")
-//                .ignoresSafeArea()
-//            
-//            VStack(alignment: .leading, spacing: 20) {
-//                Text("List Name")
-//                    .font(.subheadline)
-//                    .foregroundColor(.gray)
-//                    .padding(.top, 20)
-//                
-//                TextField("Enter list name", text: $listName)
-//                    .textFieldStyle(RoundedBorderTextFieldStyle())
-//                    .font(.body)
-//                
-//                Spacer()
-//            }
-//            .padding()
-//        }
-//        .navigationTitle("Add List Details")
-//        .navigationBarTitleDisplayMode(.inline)
-//        .navigationBarBackButtonHidden(true)
-//        .toolbar {
-//            ToolbarItem(placement: .navigationBarLeading) {
-//                Button {
-//                    dismiss()
-//                } label: {
-//                    Image(systemName: "chevron.left")
-//                        .foregroundColor(Color("listButton"))
-//                }
-//            }
-//            ToolbarItem(placement: .navigationBarTrailing) {
-//                Button("Save") {
-//                    if !listName.trimmingCharacters(in: .whitespaces).isEmpty {
-//                        viewModel.addTaskList(name: listName)
-//                        dismiss()
-//                    }
-//                }
-//                .fontWeight(.semibold)
-//                .foregroundColor(Color("listButton"))
-//                .disabled(listName.trimmingCharacters(in: .whitespaces).isEmpty)
-//            }
-//        }
-//    }
-//}
 
-
-
-//v23
-//import SwiftUI
-//
-//struct AddListView: View {
-//    @ObservedObject var viewModel: TaskListViewModel
-//    @State private var listName = ""
-//    @Environment(\.dismiss) private var dismiss
-//    
-//    var body: some View {
-//        ZStack {
-//            Color("backgroundColor")
-//                .ignoresSafeArea()
-//            
-//            VStack(alignment: .leading, spacing: 20) {
-//                Text("List Name")
-//                    .font(.subheadline)
-//                    .foregroundColor(.gray)
-//                    .padding(.top, 20)
-//                
-//                TextField("Enter list name", text: $listName)
-//                    .textFieldStyle(RoundedBorderTextFieldStyle())
-//                    .font(.body)
-//                
-//                Spacer()
-//            }
-//            .padding()
-//        }
-//        .navigationTitle("Add List Details")
-//        .navigationBarTitleDisplayMode(.inline)
-//        .navigationBarBackButtonHidden(true)
-//        .toolbar {
-//            ToolbarItem(placement: .navigationBarLeading) {
-//                Button {
-//                    dismiss()
-//                } label: {
-//                    Image(systemName: "chevron.left")
-//                        .foregroundColor(Color("listButton"))
-//                }
-//            }
-//            ToolbarItem(placement: .navigationBarTrailing) {
-//                Button("Save") {
-//                    if !listName.trimmingCharacters(in: .whitespaces).isEmpty {
-//                        viewModel.addTaskList(name: listName)
-//                        dismiss()
-//                    }
-//                }
-//                .fontWeight(.semibold)
-//                .foregroundColor(Color("listButton"))
-//                .disabled(listName.trimmingCharacters(in: .whitespaces).isEmpty)
-//            }
-//        }
-//    }
-//}
-
-
-//MARK: v24 BEST SO FAR
-//
-//import SwiftUI
-//
-//struct AddListView: View {
-//    @ObservedObject var viewModel: TaskListViewModel
-//    @State private var listName = ""
-//    @Environment(\.dismiss) private var dismiss
-//    
-//    var body: some View {
-//        ZStack {
-//            Color("backgroundColor")
-//                .ignoresSafeArea()
-//            
-//            VStack(alignment: .leading, spacing: 20) {
-//                Text("List Name")
-//                    .font(.subheadline)
-//                    .foregroundColor(.gray)
-//                    .padding(.top, 20)
-//                
-//                TextField("Enter list name", text: $listName)
-//                    .textFieldStyle(RoundedBorderTextFieldStyle())
-//                    .font(.body)
-//                
-//                Spacer()
-//            }
-//            .padding()
-//        }
-//        .navigationTitle("Add List Details")
-//        .navigationBarTitleDisplayMode(.inline)
-//        .navigationBarBackButtonHidden(true)
-//        .toolbar {
-//            ToolbarItem(placement: .navigationBarLeading) {
-//                Button {
-//                    dismiss()
-//                } label: {
-//                    Image(systemName: "chevron.left")
-//                        .foregroundColor(Color("listButton"))
-//                }
-//            }
-//            ToolbarItem(placement: .navigationBarTrailing) {
-//                Button("Save") {
-//                    if !listName.trimmingCharacters(in: .whitespaces).isEmpty {
-//                        viewModel.addTaskList(name: listName)
-//                        dismiss()
-//                    }
-//                }
-//                .fontWeight(.semibold)
-//                .foregroundColor(Color("listButton"))
-//                .disabled(listName.trimmingCharacters(in: .whitespaces).isEmpty)
-//            }
-//        }
-//    }
-//}
-//
-//
-
-
-
-
-//MARK: CHAT
-//import SwiftUI
-//
-//struct AddListView: View {
-//    @ObservedObject var viewModel: TaskListViewModel
-//    
-//    @State private var listName = ""
-//    @State private var navigateToDetail = false
-//    @State private var createdList: TaskList?
-//    
-//    @Environment(\.dismiss) private var dismiss
-//    
-//    var body: some View {
-//        ZStack {
-//            Color("backgroundColor")
-//                .ignoresSafeArea()
-//            
-//            VStack(alignment: .leading, spacing: 20) {
-//                
-//                // 🔗 Hidden NavigationLink to TaskDetailView after save
-//                NavigationLink(
-//                    destination: createdListDestination,
-//                    isActive: $navigateToDetail,
-//                    label: { EmptyView() }
-//                )
-//                .hidden()
-//                
-//                Text("List Name")
-//                    .font(.subheadline)
-//                    .foregroundColor(.gray)
-//                    .padding(.top, 20)
-//                
-//                // You can change style later to match underline design
-//                TextField("Enter list name", text: $listName)
-//                    .textFieldStyle(RoundedBorderTextFieldStyle())
-//                    .font(.body)
-//                
-//                Spacer()
-//            }
-//            .padding()
-//        }
-//        .navigationTitle("Add List Details")
-//        .navigationBarTitleDisplayMode(.inline)
-//        .navigationBarBackButtonHidden(true)
-//        .toolbar {
-//            ToolbarItem(placement: .navigationBarLeading) {
-//                Button {
-//                    dismiss()
-//                } label: {
-//                    Image(systemName: "chevron.left")
-//                        .foregroundColor(Color("listButton"))
-//                }
-//            }
-//            ToolbarItem(placement: .navigationBarTrailing) {
-//                Button("Save") {
-//                    let trimmed = listName.trimmingCharacters(in: .whitespaces)
-//                    guard !trimmed.isEmpty else { return }
-//                    
-//                    // 1) create list in the viewModel
-//                    let newList = viewModel.addTaskList(name: trimmed)
-//                    
-//                    // 2) store it so destination knows what to show
-//                    createdList = newList
-//                    
-//                    // 3) trigger navigation to TaskDetailView
-//                    navigateToDetail = true
-//                }
-//                .fontWeight(.semibold)
-//                .foregroundColor(Color("listButton"))
-//                .disabled(listName.trimmingCharacters(in: .whitespaces).isEmpty)
-//            }
-//        }
-//    }
-//    
-//    // MARK: - Destination Builder
-//    @ViewBuilder
-//    private var createdListDestination: some View {
-//        if let list = createdList {
-//            TaskDetailView(taskList: list, viewModel: viewModel)
-//        } else {
-//            EmptyView()
-//        }
-//    }
-//}
-
-
-// MARK: V32
-//import SwiftUI
-//
-//struct AddListView: View {
-//    @ObservedObject var viewModel: TaskListViewModel
-//    @State private var listName = ""
-//    @State private var navigateToDetail = false
-//    @State private var createdList: TaskList?
-//    @Environment(\.dismiss) private var dismiss
-//    
-//    var body: some View {
-//        NavigationStack {
-//            ZStack {
-//                Color("backgroundColor")
-//                    .ignoresSafeArea()
-//                
-//                VStack(spacing: 0) {
-//                    // List Name section at top
-//                    VStack(alignment: .leading, spacing: 8) {
-//                        Text("List Name")
-//                            .font(.subheadline)
-//                            .foregroundColor(.gray)
-//                        
-//                        TextField("", text: $listName)
-//                            .font(.title2)
-//                            .fontWeight(.semibold)
-//                    }
-//                    .padding()
-//                    
-//                    Spacer()
-//                    
-//                    // Plus button at bottom
-//                    VStack {
-//                        Spacer()
-//                        
-//                        ZStack {
-//                            Circle()
-//                                .fill(Material.ultraThin)
-//                                .frame(width: 85, height: 85)
-//                            
-//                            Button {
-//                                if !listName.trimmingCharacters(in: .whitespaces).isEmpty {
-//                                    viewModel.addTaskList(name: listName)
-//                                    if let newList = viewModel.taskLists.last {
-//                                        createdList = newList
-//                                        navigateToDetail = true
-//                                    }
-//                                }
-//                            } label: {
-//                                Image(systemName: "plus.circle.fill")
-//                                    .font(.system(size: 80))
-//                                    .foregroundColor(Color("listButton"))
-//                            }
-//                            .disabled(listName.trimmingCharacters(in: .whitespaces).isEmpty)
-//                            .opacity(listName.trimmingCharacters(in: .whitespaces).isEmpty ? 0.5 : 1.0)
-//                        }
-//                        .padding(.bottom, 50)
-//                    }
-//                }
-//                
-//                NavigationLink(destination: createdList.map { list in
-//                    TaskDetailView(taskList: list, viewModel: viewModel)
-//                }, isActive: $navigateToDetail) {
-//                    EmptyView()
-//                }
-//            }
-//            .navigationTitle("Add List Details")
-//            .navigationBarTitleDisplayMode(.inline)
-//            .toolbar {
-//                ToolbarItem(placement: .navigationBarLeading) {
-//                    Button {
-//                        dismiss()
-//                    } label: {
-//                        Image(systemName: "chevron.left")
-//                            .foregroundColor(Color("listButton"))
-//                    }
-//                }
-//                ToolbarItem(placement: .navigationBarTrailing) {
-//                    Button("Save") {
-//                        dismiss()
-//                    }
-//                    .fontWeight(.semibold)
-//                    .foregroundColor(Color("listButton"))
-//                }
-//            }
-//        }
-//    }
-//}
-//
-
-
-//MARK: V34
 import SwiftUI
 
 struct AddListView: View {
     @ObservedObject var viewModel: TaskListViewModel
     @State private var listName = ""
     @State private var isListSaved = false
-    @State private var showingAddTask = false
     @State private var createdList: TaskList?
-    @Environment(\.dismiss) private var dismiss
+    @State private var isAddingTask = false
+    @State private var newTaskName = ""
     @FocusState private var isTextFieldFocused: Bool
+    @FocusState private var newTaskFocused: Bool
+    @Environment(\.dismiss) private var dismiss
     
     var body: some View {
         ZStack {
             Color("backgroundColor")
                 .ignoresSafeArea()
-            
-            VStack(spacing: 0) {
-                // List Name section at top - clickable
-                Button {
-                    if !isListSaved {
-                        isTextFieldFocused = true
+                .onTapGesture {
+                    // Save task when tapping outside
+                    if isAddingTask && !newTaskName.trimmingCharacters(in: .whitespaces).isEmpty {
+                        saveNewTask()
                     }
-                } label: {
-                    VStack(alignment: .leading, spacing: 8) {
-                        Text("List Name")
-                            .font(.subheadline)
-                            .foregroundColor(.gray)
-                        
+                    newTaskFocused = false
+                    isTextFieldFocused = false
+                }
+            
+            VStack(alignment: .leading, spacing: 0) {
+                // List name input at top left
+                VStack(alignment: .leading, spacing: 8) {
+                    ZStack(alignment: .leading) {
+                        if listName.isEmpty && !isListSaved {
+                            Text("List name..")
+                                .foregroundColor(.gray.opacity(0.4))
+                                .font(.title2)
+                                .fontWeight(.semibold)
+                        }
                         if isListSaved {
                             Text(listName)
                                 .font(.title2)
                                 .fontWeight(.semibold)
-                                .foregroundColor(.primary)
+                                .foregroundColor(.black)
                         } else {
-                            TextField("Enter list name", text: $listName)
+                            TextField("", text: $listName)
                                 .font(.title2)
                                 .fontWeight(.semibold)
+                                .foregroundColor(.black)
                                 .focused($isTextFieldFocused)
                         }
-                        
-                        Divider()
                     }
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding()
+                    
+                    Divider()
+                        .background(.black.opacity(0.3))
                 }
-                .disabled(isListSaved)
+                .padding()
                 
                 // Tasks list (only shows after list is saved)
-                if isListSaved, let list = createdList {
-                    ScrollView {
-                        LazyVStack(spacing: 12) {
-                            ForEach(list.tasks) { task in
-                                HStack(spacing: 12) {
-                                    Image(systemName: task.isCompleted ? "checkmark.circle.fill" : "circle")
-                                        .foregroundColor(task.isCompleted ? .green : .gray)
-                                        .font(.title2)
-                                    
-                                    Text(task.name)
-                                        .foregroundColor(.primary)
-                                    
-                                    Spacer()
-                                }
-                                .padding()
-                                .background(Color("TaskColor"))
-                                .cornerRadius(25)
-                            }
+                if isListSaved {
+                    if let list = createdList, list.tasks.isEmpty && !isAddingTask {
+                        // Empty state
+                        Spacer()
+                        
+                        VStack(spacing: 12) {
+                            Image(systemName: "checklist")
+                                .font(.system(size: 60))
+                                .foregroundColor(.gray.opacity(0.5))
+                            Text("No tasks yet")
+                                .font(.headline)
+                                .foregroundColor(.gray)
+                            Text("Tap + to add your first task")
+                                .font(.caption)
+                                .foregroundColor(.gray)
                         }
-                        .padding()
-                        .padding(.bottom, 120)
+                        .frame(maxWidth: .infinity)
+                        
+                        Spacer()
+                    } else if let list = createdList {
+                        ScrollView {
+                            LazyVStack(spacing: 12) {
+                                // New task input box (appears when adding)
+                                if isAddingTask {
+                                    VStack {
+                                        HStack(spacing: 12) {
+                                            ZStack(alignment: .leading) {
+                                                if newTaskName.isEmpty {
+                                                    Text("Task name..")
+                                                        .foregroundColor(.gray.opacity(0.4))
+                                                        .font(.body)
+                                                }
+                                                TextField("", text: $newTaskName)
+                                                    .font(.body)
+                                                    .foregroundColor(.white)
+                                                    .focused($newTaskFocused)
+                                                    .submitLabel(.done)
+                                                    .onSubmit {
+                                                        if !newTaskName.trimmingCharacters(in: .whitespaces).isEmpty {
+                                                            saveNewTask()
+                                                        }
+                                                    }
+                                            }
+                                        }
+                                    }
+                                    .padding(.horizontal, 20)
+                                    .padding(.vertical, 16)
+                                    .frame(height: 73)
+                                    .background(Color("TaskColor"))
+                                    .cornerRadius(25)
+                                    .transition(.move(edge: .top).combined(with: .opacity))
+                                    .onTapGesture {
+                                        // Keep focus when tapping on the input box
+                                        newTaskFocused = true
+                                    }
+                                }
+                                
+                                ForEach(list.tasks) { task in
+                                    HStack(spacing: 12) {
+                                        Image(systemName: task.isCompleted ? "checkmark.circle.fill" : "circle")
+                                            .foregroundColor(task.isCompleted ? Color(red: 0.6, green: 0.9, blue: 0.6) : .white)
+                                            .font(.title2)
+                                        
+                                        Text(task.name)
+                                            .foregroundColor(.white)
+                                        
+                                        Spacer()
+                                    }
+                                    .padding(.horizontal, 20)
+                                    .padding(.vertical, 16)
+                                    .frame(height: 73)
+                                    .background(Color("TaskColor"))
+                                    .cornerRadius(25)
+                                }
+                            }
+                            .padding()
+                            .padding(.bottom, 180)
+                        }
                     }
                 }
                 
                 Spacer()
-                
-                // Plus button at bottom (only shows after list is saved)
-                if isListSaved {
-                    VStack {
-                        Spacer()
+            }
+            
+            // Plus button at bottom (only shows after list is saved)
+            if isListSaved {
+                VStack {
+                    Spacer()
+                    
+                    ZStack(alignment: .bottom) {
+                        Rectangle()
+                            .fill(.regularMaterial)
+                            .frame(height: 200)
+                            .mask(
+                                LinearGradient(
+                                    gradient: Gradient(stops: [
+                                        .init(color: .clear, location: 0),
+                                        .init(color: .white, location: 0.4),
+                                        .init(color: .white, location: 1)
+                                    ]),
+                                    startPoint: .top,
+                                    endPoint: .bottom
+                                )
+                            )
                         
-                        ZStack {
-                            Circle()
-                                .fill(Material.ultraThin)
-                                .frame(width: 85, height: 85)
-                            
-                            Button {
-                                showingAddTask = true
-                            } label: {
-                                Image(systemName: "plus.circle.fill")
-                                    .font(.system(size: 80))
-                                    .foregroundColor(Color("listButton"))
+                        Button {
+                            withAnimation {
+                                isAddingTask = true
+                            }
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                                newTaskFocused = true
+                            }
+                        } label: {
+                            ZStack {
+                                Circle()
+                                    .fill(Color(red: 38/255, green: 38/255, blue: 80/255))
+                                    .frame(width: 80, height: 80)
+                                
+                                Image(systemName: "plus")
+                                    .font(.system(size: 40, weight: .semibold))
+                                    .foregroundColor(Color("backgroundColor"))
                             }
                         }
                         .padding(.bottom, 50)
                     }
+                    .frame(height: 200)
                 }
+                .ignoresSafeArea(edges: .bottom)
             }
         }
-        .navigationTitle("Add List Details")
+        .navigationTitle("")
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarBackButtonHidden(true)
         .toolbar {
@@ -456,7 +198,7 @@ struct AddListView: View {
                 }
             }
             ToolbarItem(placement: .navigationBarTrailing) {
-                Button("Save") {
+                Button(isListSaved ? "Done" : "Save") {
                     if !isListSaved && !listName.trimmingCharacters(in: .whitespaces).isEmpty {
                         // Save the list name
                         viewModel.addTaskList(name: listName)
@@ -474,71 +216,25 @@ struct AddListView: View {
                 .disabled(!isListSaved && listName.trimmingCharacters(in: .whitespaces).isEmpty)
             }
         }
-        .sheet(isPresented: $showingAddTask) {
-            if let list = createdList {
-                AddTaskSheetView(taskList: list, viewModel: viewModel) { updatedList in
-                    createdList = updatedList
-                }
-            }
+        .onAppear {
+            isTextFieldFocused = true
+        }
+    }
+    
+    private func saveNewTask() {
+        guard let list = createdList else { return }
+        var updatedList = list
+        let newTask = Task(name: newTaskName)
+        updatedList.tasks.append(newTask)
+        viewModel.updateTaskList(updatedList)
+        createdList = updatedList
+        newTaskName = ""
+        // Don't set isAddingTask to false - keep it true to show new empty box
+        // isAddingTask = false
+        
+        // Keep focus on the text field for next task
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            newTaskFocused = true
         }
     }
 }
-
-// New sheet view for adding tasks
-struct AddTaskSheetView: View {
-    let taskList: TaskList
-    let viewModel: TaskListViewModel
-    let onTaskAdded: (TaskList) -> Void
-    
-    @State private var taskName = ""
-    @Environment(\.dismiss) private var dismiss
-    
-    var body: some View {
-        NavigationView {
-            ZStack {
-                Color("backgroundColor")
-                    .ignoresSafeArea()
-                
-                VStack(alignment: .leading, spacing: 20) {
-                    Text("Task Name")
-                        .font(.subheadline)
-                        .foregroundColor(.gray)
-                        .padding(.top, 20)
-                    
-                    TextField("Enter task name", text: $taskName)
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
-                        .font(.body)
-                    
-                    Spacer()
-                }
-                .padding()
-            }
-            .navigationTitle("Add Task Details")
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
-                    Button("Cancel") {
-                        dismiss()
-                    }
-                    .foregroundColor(Color("listButton"))
-                }
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button("Save") {
-                        if !taskName.trimmingCharacters(in: .whitespaces).isEmpty {
-                            var updatedList = taskList
-                            let newTask = Task(name: taskName)
-                            updatedList.tasks.append(newTask)
-                            viewModel.updateTaskList(updatedList)
-                            onTaskAdded(updatedList)
-                            dismiss()
-                        }
-                    }
-                    .fontWeight(.semibold)
-                    .foregroundColor(Color("listButton"))
-                    .disabled(taskName.trimmingCharacters(in: .whitespaces).isEmpty)
-                }
-            }
-        }
-    }
-}
-
