@@ -2,7 +2,12 @@
 import SwiftUI
 
 struct FocusTimerScreen: View {
-    @StateObject private var viewModel = TimerViewModel()
+    @StateObject private var viewModel: TimerViewModel
+
+    // نسمح بتمرير viewModel من برّا
+    init(viewModel: TimerViewModel = TimerViewModel()) {
+        _viewModel = StateObject(wrappedValue: viewModel)
+    }
     
     var body: some View {
         ZStack {

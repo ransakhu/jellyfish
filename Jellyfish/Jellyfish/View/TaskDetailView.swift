@@ -4,6 +4,8 @@ import SwiftUI
 
 struct TaskDetailView: View {
     @StateObject private var viewModel: TaskDetailViewModel
+    @StateObject private var timerVM = TimerViewModel()
+// انا
     @State private var selectedTask: Task?
     @State private var showingTimerScreen = false
     @State private var isAddingTask = false
@@ -183,12 +185,13 @@ struct TaskDetailView: View {
         .fullScreenCover(isPresented: $showingTimerScreen) {
             if let task = selectedTask {
                 NavigationView {
-                    FocusTimerScreen()
+                    FocusTimerScreen(viewModel: timerVM)   // ✅ نمرّر نفس التايمر
                         .navigationBarTitleDisplayMode(.inline)
                         .toolbar {
                             ToolbarItem(placement: .navigationBarLeading) {
                                 Button("Done") {
-                                    showingTimerScreen = false
+                                    timerVM.startFocus()      // 🔥 يبدأ التايمر
+                                    showingTimerScreen = false                                //rand
                                 }
                             }
                         }
