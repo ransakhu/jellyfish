@@ -6,7 +6,14 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		A49076E52EE70DB40077BDA2 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = A49076E42EE70DB40077BDA2 /* Localizable.xcstrings */; };
+		A49076E72EE70DF20077BDA2 /* Untitled.swift in Sources */ = {isa = PBXBuildFile; fileRef = A49076E62EE70DCC0077BDA2 /* Untitled.swift */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
+		A49076E42EE70DB40077BDA2 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
+		A49076E62EE70DCC0077BDA2 /* Untitled.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Untitled.swift; sourceTree = "<group>"; };
 		F72E508C2EDDCEA8008CB572 /* Jellyfish.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Jellyfish.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -32,6 +39,8 @@
 		F72E50832EDDCEA8008CB572 = {
 			isa = PBXGroup;
 			children = (
+				A49076E42EE70DB40077BDA2 /* Localizable.xcstrings */,
+				A49076E62EE70DCC0077BDA2 /* Untitled.swift */,
 				F72E508D2EDDCEA8008CB572 /* Products */,
 				F72E508E2EDDCEA8008CB572 /* Jellyfish */,
 			);
@@ -91,6 +100,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ar,
 			);
 			mainGroup = F72E50832EDDCEA8008CB572;
 			minimizedProjectReferenceProxies = 1;
@@ -109,6 +119,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A49076E52EE70DB40077BDA2 /* Localizable.xcstrings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -119,6 +130,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A49076E72EE70DF20077BDA2 /* Untitled.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -184,6 +196,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -240,6 +253,7 @@
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
