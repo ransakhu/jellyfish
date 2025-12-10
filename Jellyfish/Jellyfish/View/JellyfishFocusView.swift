@@ -1,4 +1,4 @@
-
+/* Aisha's Version*/
 import SwiftUI
 
 struct JellyfishFocusView: View {
@@ -111,7 +111,4 @@ struct JellyfishFocusView: View {
         .padding(.horizontal, 16)
     }
 }
-
-#Preview {
-    JellyfishFocusView(viewModel: TimerViewModel())
-}
+ 
