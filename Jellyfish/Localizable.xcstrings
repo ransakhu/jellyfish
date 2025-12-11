@@ -452,6 +452,7 @@
       }
     },
     "Start again" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {

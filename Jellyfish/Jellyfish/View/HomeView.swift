@@ -174,11 +174,26 @@ struct HomeView: View {
                                     endPoint: .bottom
                                 )
                             )
-                        
+                        if !showingArchive {     // 👈 يخفي زر + إذا كنا في الأرشيف
+                            NavigationLink(destination: AddListView(viewModel: viewModel)) {
+                                ZStack {
+                                    Circle()
+                                        .fill(Color("listButton"))
+                                        .frame(width: 80, height: 80)
+                                    
+                                    Image(systemName: "plus")
+                                        .font(.system(size: 40, weight: .semibold))
+                                        .foregroundColor(Color("backgroundColor"))
+                                }
+                            }
+                            .padding(.bottom, 50)
+                        }
+
+                /*
                         NavigationLink(destination: AddListView(viewModel: viewModel)) {
                             ZStack {
                                 Circle()
-                                    .fill(Color(red: 38/255, green: 38/255, blue: 80/255))
+                                    .fill(Color("listButton"))
                                     .frame(width: 80, height: 80)
                                 
                                 Image(systemName: "plus")
@@ -186,7 +201,7 @@ struct HomeView: View {
                                     .foregroundColor(Color("backgroundColor"))
                             }
                         }
-                        .padding(.bottom, 50)
+                        .padding(.bottom, 50) */
                     }
                     .frame(height: 200)
                 }
