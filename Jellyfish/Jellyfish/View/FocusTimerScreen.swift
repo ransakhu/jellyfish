@@ -38,7 +38,49 @@
 //
 //#Preview {
 //    FocusTimerScreen()
-//}
+////}
+//import SwiftUI
+//
+//struct FocusTimerScreen: View {
+//    @ObservedObject var viewModel: TimerViewModel
+//    let taskName: String
+//    let onDismiss: () -> Void
+//    
+//    var body: some View {
+//        ZStack {
+//            SeaBackground()
+//            
+//            VStack {
+//                Spacer()
+//                
+//                Group {
+//                    switch viewModel.mode {
+//                    case .selecting:
+//                        CircularSelectionTimerView(viewModel: viewModel)
+//                        
+//                    case .running, .finished:
+//                        JellyfishFocusView(viewModel: viewModel)
+//                    }
+//                }
+//                .offset(y: -40)
+//                
+//                Spacer()
+//            }
+//        }
+//        .navigationBarBackButtonHidden(true)
+//        .toolbar {
+//            // زر Done يطلع فقط بعد ما يبدأ التايمر
+//            if viewModel.hasStarted {
+//                ToolbarItem(placement: .navigationBarLeading) {
+//                    Button("Done") {
+//                        onDismiss()
+//                    }
+//                    .foregroundColor(.white)
+//                }
+//            }
+//        }
+//    }
+//} last
 import SwiftUI
 
 struct FocusTimerScreen: View {
@@ -69,13 +111,37 @@ struct FocusTimerScreen: View {
         }
         .navigationBarBackButtonHidden(true)
         .toolbar {
-            // زر Done يطلع فقط بعد ما يبدأ التايمر
-            if viewModel.hasStarted {
-                ToolbarItem(placement: .navigationBarLeading) {
-                    Button("Done") {
-                        onDismiss()
+            // أيقون X على اليسار
+            ToolbarItem(placement: .navigationBarLeading) {
+                Button {
+                    onDismiss()
+                } label: {
+                    Image(systemName: "xmark")
+                        .foregroundColor(.white)
+                }
+            }
+            
+            // أيقون ✓ على اليمين - يطلع فقط في وضع الاختيار
+            if viewModel.mode == .selecting {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button {
+                        viewModel.startFocus()
+                    } label: {
+                        Image(systemName: "checkmark")
+                            .foregroundColor(.white)
                     }
-                    .foregroundColor(.white)
+                }
+            }
+            
+            // أو لو التايمر شغال، نعرض أيقون إيقاف/إكمال
+            if viewModel.mode == .running {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button {
+                        onDismiss()
+                    } label: {
+                        Image(systemName: "checkmark")
+                            .foregroundColor(.white)
+                    }
                 }
             }
         }
