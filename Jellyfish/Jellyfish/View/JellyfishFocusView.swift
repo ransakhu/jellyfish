@@ -61,6 +61,41 @@ struct JellyfishFocusView: View {
                     .padding(.top, 8)
             }
             
+             // rands
+             // أزرار أثناء التشغيل (Pause / Stop)
+             if viewModel.mode == .running {
+                 HStack(spacing: 16) {
+                     // PAUSE / RESUME
+                     Button(action: {
+                         viewModel.togglePause()
+                     }) {
+                         Text(viewModel.isPaused ? "Resume" : "Pause")
+                             .lineLimit(1)                 // سطر واحد فقط
+                             .minimumScaleFactor(0.8)      // يصغّر الخط شوي لو النص طويل
+                             .frame(minWidth: 120)         // 👈 هنا ثبّتنا عرض الزر
+                             .padding(.vertical, 10)
+                     }
+                     .background(Color.white.opacity(0.2))
+                     .foregroundColor(.white)
+                     .cornerRadius(20)
+
+                     // STOP (يرجع لشاشة اختيار الوقت)
+                     Button(action: {
+                         viewModel.reset()
+                     }) {
+                         Text("Stop")
+                             .lineLimit(1)
+                             .minimumScaleFactor(0.8)
+                             .frame(minWidth: 120)         // 👈 نفس عرض الزر الأول
+                             .padding(.vertical, 10)
+                     }
+                     .background(Color.white)
+                     .foregroundColor(Color(red: 0.02, green: 0.25, blue: 0.49))
+                     .cornerRadius(20)
+                 }
+                 .padding(.top, 8)
+             }
+/*
             // أزرار أثناء التشغيل (Pause / Stop)
             if viewModel.mode == .running {
                 HStack(spacing: 16) {
@@ -104,7 +139,7 @@ struct JellyfishFocusView: View {
                         .cornerRadius(20)
                 }
                 .padding(.top, 8)
-            }
+            } */
             
             Spacer().frame(height: 40)
         }

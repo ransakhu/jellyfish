@@ -52,7 +52,7 @@ struct TaskRowView: View {
                         .foregroundColor(task.isCompleted ? .gray : .black)
                     
                     Spacer()
-                    
+                  /*
                     HStack(spacing: 8) {
                         // Timer button - أكبر + خلفية لما يكون مفعّل
                         Button {
@@ -84,7 +84,44 @@ struct TaskRowView: View {
                                     .foregroundColor(task.hasNotification ? .white : Color(red: 77/255, green: 182/255, blue: 172/255))
                                     .font(.system(size: 16))
                             }
-                        }
+                        } */
+                    HStack(spacing: 8) {
+                            // Timer button - ثابت الحجم
+                            Button {
+                                onTimer()
+                            } label: {
+                                Circle()
+                                    .fill(task.hasTimer ? Color("Timer") : .clear) // خلفية بس إذا مفعّل
+                                    .frame(width: 34, height: 34)                  // 👈 نفس المقاس دايمًا
+                                    .overlay(
+                                        Image(systemName: "timer")
+                                            .foregroundColor(task.hasTimer ? .white : Color("Timer"))
+                                            .font(.system(size: 16))
+                                    )
+                            }
+
+                            // Notification button - ثابت الحجم
+                            Button {
+                                onNotification()
+                            } label: {
+                                Circle()
+                                    .fill(task.hasNotification
+                                          ? Color(red: 77/255, green: 182/255, blue: 172/255)
+                                          : .clear)
+                                    .frame(width: 34, height: 34)                  // 👈 نفس المقاس دايمًا
+                                    .overlay(
+                                        Image(systemName: "bell.fill")
+                                            .foregroundColor(
+                                                task.hasNotification
+                                                ? .white
+                                                : Color(red: 77/255, green: 182/255, blue: 172/255)
+                                            )
+                                            .font(.system(size: 16))
+                                    )
+                            }
+                        }.padding(.trailing,  -16)   // 👈 يحرك الزرين لليسار
+
+
                     }
                 }
                 .padding(.horizontal, 20)
@@ -125,4 +162,4 @@ struct TaskRowView: View {
                 .padding(.leading, 52)
         }
     }
-}
+
