@@ -178,7 +178,7 @@ struct HomeView: View {
                         NavigationLink(destination: AddListView(viewModel: viewModel)) {
                             ZStack {
                                 Circle()
-                                    .fill(Color(red: 38/255, green: 38/255, blue: 80/255))
+                                    .fill(Color("listButton"))
                                     .frame(width: 80, height: 80)
                                 
                                 Image(systemName: "plus")

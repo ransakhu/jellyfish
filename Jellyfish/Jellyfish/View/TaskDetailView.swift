@@ -26,6 +26,7 @@ struct TaskDetailView: View {
                         saveNewTask()
                     }
                     newTaskFocused = false
+                    isAddingTask = false
                 }
             
             VStack(spacing: 0) {
@@ -44,10 +45,14 @@ struct TaskDetailView: View {
                     .frame(maxHeight: .infinity)
                 } else {
                     ScrollView {
-                        LazyVStack(spacing: 12) {
+                        LazyVStack(spacing: 0) {
                             if isAddingTask {
-                                VStack {
+                                VStack(spacing: 0) {
                                     HStack(spacing: 12) {
+                                        Image(systemName: "circle")
+                                            .foregroundColor(.gray)
+                                            .font(.title2)
+                                        
                                         ZStack(alignment: .leading) {
                                             if newTaskName.isEmpty {
                                                 Text("Task name..")
@@ -56,22 +61,31 @@ struct TaskDetailView: View {
                                             }
                                             TextField("", text: $newTaskName)
                                                 .font(.body)
-                                                .foregroundColor(.white)
+                                                .foregroundColor(.black)
                                                 .focused($newTaskFocused)
-                                                .submitLabel(.done)
+                                                .submitLabel(.return)
                                                 .onSubmit {
                                                     if !newTaskName.trimmingCharacters(in: .whitespaces).isEmpty {
                                                         saveNewTask()
+                                                        // Keep adding mode active and refocus
+                                                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                                                            isAddingTask = true
+                                                            newTaskFocused = true
+                                                        }
                                                     }
                                                 }
                                         }
+                                        
+                                        Spacer()
                                     }
+                                    .padding(.horizontal, 20)
+                                    .padding(.vertical, 20)
+                                    .frame(height: 60)
+                                    
+                                    Divider()
+                                        .background(Color.gray.opacity(0.3))
+                                        .padding(.leading, 52)
                                 }
-                                .padding(.horizontal, 20)
-                                .padding(.vertical, 20)
-                                .frame(height: 85)
-                                .background(Color("TaskColor"))
-                                .cornerRadius(25)
                                 .transition(.move(edge: .top).combined(with: .opacity))
                                 .onTapGesture {
                                     newTaskFocused = true
@@ -153,7 +167,7 @@ struct TaskDetailView: View {
                     } label: {
                         ZStack {
                             Circle()
-                                .fill(Color(red: 38/255, green: 38/255, blue: 80/255))
+                                .fill(Color("listButton"))
                                 .frame(width: 80, height: 80)
                             
                             Image(systemName: "plus")
@@ -209,9 +223,5 @@ struct TaskDetailView: View {
     private func saveNewTask() {
         viewModel.addTask(name: newTaskName)
         newTaskName = ""
-        isAddingTask = false
     }
 }
-
-
-
