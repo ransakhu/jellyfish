@@ -5,7 +5,8 @@ import SwiftUI
 struct JellyfishApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()   // أول شاشة يفتحها التطبيق
+            SplashScreen()
+            // أول شاشة يفتحها التطبيق
         }
     }
 }
