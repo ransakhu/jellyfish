@@ -25,6 +25,9 @@
         }
       }
     },
+    "%lld%%" : {
+
+    },
     "%lld%% Complete" : {
       "localizations" : {
         "ar" : {
