@@ -33,7 +33,7 @@ struct JellyfishFocusView: View {
                 }
             // أثناء التشغيل
             if viewModel.mode == .running {
-                Text("keep the fish alive!")
+                Text("Your jellyfish believes in you!")
                     .foregroundColor(.white)
                     .font(.system(size: 20, weight: .semibold))
                 

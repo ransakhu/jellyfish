@@ -164,6 +164,7 @@
       }
     },
     "keep the fish alive!" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -548,6 +549,9 @@
           }
         }
       }
+    },
+    "Your jellyfish believes in you!" : {
+
     }
   },
   "version" : "1.1"
